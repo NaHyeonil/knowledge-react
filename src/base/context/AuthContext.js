@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext } from 'react';
-import useLocalStorage from 'Base/hooks/useLocalStorage';
+import useLocalStorage from 'base/hooks/useLocalStorage';
 
 const INITIAL_AUTH = { isLoggedIn: false };
 

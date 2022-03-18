@@ -1,21 +1,20 @@
+import { useAuth } from 'base/context/AuthContext';
+import LoginForm from 'components/accounts/LoginForm';
+import SignForm from 'components/accounts/SignupForm';
+import { Routes, Route } from 'react-router-dom';
+import TopNav from 'TopNav';
 import './App.css';
 
 function App() {
+  const [auth, _, login] = useAuth();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TopNav />
+      <Routes>
+        <Route path="/login/" element={<LoginForm />} />
+        <Route path="/singup/" element={<SignForm />} />
+      </Routes>
     </div>
   );
 }
