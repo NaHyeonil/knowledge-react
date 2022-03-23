@@ -18,7 +18,7 @@ function AuthProvider({ children }) {
       is_staff,
       is_superuser,
       is_active,
-      user_nickname,
+      nickname,
     }) => {
       setAuth({
         isLoggedIn: true,
@@ -26,7 +26,7 @@ function AuthProvider({ children }) {
         refresh,
         user_id,
         username,
-        user_nickname,
+        nickname,
         is_staff,
         is_superuser,
         is_active,

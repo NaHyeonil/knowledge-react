@@ -28,7 +28,7 @@ function LoginForm() {
         refresh,
         user_id,
         username,
-        user_nickname,
+        nickname,
         is_staff,
         is_superuser,
       } = response.data;
@@ -37,7 +37,7 @@ function LoginForm() {
         refresh,
         user_id,
         username,
-        user_nickname,
+        nickname,
         is_staff,
         is_superuser,
       });
@@ -45,7 +45,7 @@ function LoginForm() {
       console.log('refresh :', refresh);
       console.log('user_id :', user_id);
       console.log('username :', username);
-      console.log('user_nickname :', user_nickname);
+      console.log('nickname :', nickname);
       console.log(' is_superuser :', is_superuser);
       Navigate('/');
     });

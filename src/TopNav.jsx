@@ -54,6 +54,26 @@ function TopNav() {
       <div>
         <hr className=" borter-t border-gray-50" />
       </div>
+      <div className="flex mt-10 mb-3">
+        <div className="text-align: right-1 mr-20 ">
+          <Link to="/knowledge/" className="font-bold text-gray-800">
+            지식공유
+          </Link>
+        </div>
+        <div className="text-align: right-1  mr-20 ">
+          <Link to="/hotdeal/" className="font-bold text-gray-800">
+            핫딜게시판
+          </Link>
+        </div>
+        <div className="text-align: right-1 mr-20 ">
+          <Link to="/notice/" className="font-bold text-gray-800">
+            공지사항
+          </Link>
+        </div>
+      </div>
+      <div>
+        <hr className=" borter-t border-gray-50" />
+      </div>
     </div>
   );
 }
