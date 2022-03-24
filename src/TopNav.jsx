@@ -11,6 +11,12 @@ function TopNav() {
 
   return (
     <div className="mt-3">
+      <div>
+        <MyLink className="content-center" to="/">
+          하드웨어 정보
+        </MyLink>
+        <hr className=" borter-t border-gray-50" />
+      </div>
       <div className="">
         <div>
           <div className="flex justify-end mt-2 md:flex-row md:mt-0 md:mx-1">

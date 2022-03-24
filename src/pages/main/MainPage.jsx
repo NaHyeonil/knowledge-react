@@ -1,9 +1,12 @@
 import { useAuth } from 'base/context/AuthContext';
+import KnowledgeList from 'components/knowledge/KnowledgeList';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 function MainPage() {
   const navigate = useNavigate();
-  const [auth, logout] = useAuth();
+  const [auth, , , logout] = useAuth();
+  const [currentItems, setCurrentItems] = useState(null);
   const handleLogout = () => {
     logout();
     navigate('/');
@@ -12,10 +15,11 @@ function MainPage() {
     return (
       <div>
         <div className="grid grid-cols-2">
-          <div className="box-border border-2">
+          <div className="box-border border-2 my-2 mr-2">
             <h1 className="pt-8  text-xl font-bold">지식공유</h1>
+            <KnowledgeList />
           </div>
-          <div className="grid box-border border-2">
+          <div className="grid grid-cols-6 grid-rows-2 box-border border-2 my-2 ml-2">
             <div className="pb-1 text-gray-500 text-xs flex flex-col mt-2 md:flex-row md:mt-0 md:mx-3">
               {`${auth.nickname}님`}
             </div>
@@ -27,10 +31,10 @@ function MainPage() {
               로그아웃
             </button>
           </div>
-          <div className="box-border border-2">
+          <div className="box-border border-2 my-2 mr-2">
             <h1 className="pt-8  text-xl font-bold">핫딜게시판</h1>
           </div>
-          <div className="box-border border-2">
+          <div className="box-border border-2 my-2 ml-2">
             <h1 className="pt-8  text-xl font-bold">공지사항</h1>
           </div>
         </div>
@@ -42,6 +46,7 @@ function MainPage() {
         <div className="grid grid-cols-2">
           <div className="box-border border-2 my-2 mr-2">
             <h1 className="pt-8 text-xl font-bold">지식공유</h1>
+            <KnowledgeList />
           </div>
           <div className="grid grid-cols-6 grid-rows-2 box-border border-2 my-2 ml-2">
             <button
