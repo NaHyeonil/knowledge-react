@@ -1,11 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useApiAxios } from 'base/api/base';
 import ReactPaginate from 'react-paginate';
-import KnowledgeSummary from './KnowledgeSummary';
 import 'base/css/Pagination.css';
-import KnowledgeCategory from './KnowledgeCategory';
+import TradeSummary from './TradeSummary';
 
-function KnowledgeList({ itemsPerPage = 10 }) {
+function TradeList({ itemsPerPage = 10 }) {
   const [query, setQuery] = useState();
   const [currentItems, setCurrentItems] = useState(null);
   const [pageCount, setPageCount] = useState();
@@ -13,15 +12,15 @@ function KnowledgeList({ itemsPerPage = 10 }) {
   const [reload, setReload] = useState(false);
   const [category, setCategory] = useState();
 
-  const [{ data, loading, error }, getKnowledge] = useApiAxios(
+  const [{ data, loading, error }, getTrade] = useApiAxios(
     {
-      url: `/knowledge/api/knowledge_share/`,
+      url: `/trade/api/trade/`,
       method: 'GET',
     },
     { manual: true },
   );
 
-  const fetchKnowledge = useCallback(
+  const fetchTrade = useCallback(
     async (newPage, newQuery = query) => {
       const params = {
         page: newPage,
@@ -29,7 +28,7 @@ function KnowledgeList({ itemsPerPage = 10 }) {
         category: category === 'ALL' ? '' : category,
       };
 
-      const { data } = await getKnowledge({ params });
+      const { data } = await getTrade({ params });
 
       setPage(newPage);
       setPageCount(Math.ceil(data.count / itemsPerPage));
@@ -39,16 +38,16 @@ function KnowledgeList({ itemsPerPage = 10 }) {
   );
 
   useEffect(() => {
-    fetchKnowledge(1);
+    fetchTrade(1);
   }, [category]);
 
   const handlePageClick = (event) => {
-    fetchKnowledge(event.selected + 1);
+    fetchTrade(event.selected + 1);
   };
 
   const search = (e) => {
     if (e.key === 'Enter') {
-      fetchKnowledge(1, query);
+      fetchTrade(1, query);
     }
   };
 
@@ -61,25 +60,17 @@ function KnowledgeList({ itemsPerPage = 10 }) {
     <div>
       {loading && '로딩 중 ...'}
       {error && '로딩 중 에러가 발생했습니다.'}
-      <KnowledgeCategory setCategory={setCategory} />
 
       <table className="border-t-2  border-gray-150 w-full text-xs">
         <thead className="border-b font-semibold border-gray-150">
           <tr>
             <td className="p-5 text-justify">번호</td>
-            <td className="p-5 text-justify">제목</td>
+            <td className="p-5 text-justify">품목</td>
             <td className="p-5 text-right">작성자</td>
-            <td className="p-5 text-right">
-              <div className="mr-6">등록일</div>
-            </td>
           </tr>
         </thead>
-        {currentItems?.map((knowledge, index) => (
-          <KnowledgeSummary
-            knowledge={knowledge}
-            index={index}
-            key={knowledge.knowledge_no}
-          />
+        {currentItems?.map((trade, index) => (
+          <TradeSummary trade={trade} index={index} key={trade.trade_no} />
         ))}
       </table>
       <div className="text-right mb-2 flex justify-end">
@@ -106,4 +97,4 @@ function KnowledgeList({ itemsPerPage = 10 }) {
     </div>
   );
 }
-export default KnowledgeList;
+export default TradeList;

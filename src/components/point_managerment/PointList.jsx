@@ -20,18 +20,26 @@ function PointList({ itemsPerPage = 10 }) {
     { manual: true },
   );
 
-  const fetchPoint = useCallback(async (newPage, newQuery = query) => {
-    const params = {
-      page: newPage,
-      query: newQuery,
-    };
+  const fetchPoint = useCallback(
+    async (newPage, newQuery = query) => {
+      const params = {
+        page: newPage,
+        query: newQuery,
+        category: category === 'ALL' ? '' : category,
+      };
 
-    const { data } = await getPointManagement({ params });
+      const { data } = await getPointManagement({ params });
 
-    setPage(newPage);
-    setPageCount(Math.ceil(data.count / itemsPerPage));
-    setCurrentItems(data?.results);
-  }, []);
+      setPage(newPage);
+      setPageCount(Math.ceil(data.count / itemsPerPage));
+      setCurrentItems(data?.results);
+    },
+    [category],
+  );
+
+  useEffect(() => {
+    fetchPoint(1);
+  }, [category]);
 
   const handlePageClick = (event) => {
     fetchPoint(event.selected + 1);

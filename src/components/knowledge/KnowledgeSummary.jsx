@@ -11,7 +11,7 @@ function KnowledgeSummary({ knowledge, index }) {
               {knowledge.title}
             </Link>
           </td>
-          <td className="ml-20">{knowledge?.user_id?.nickname}</td>
+          <td className="text-right pr-5">{knowledge?.user_id?.nickname}</td>
           <td className="text-right pr-5">
             {knowledge.update_at.slice(0, 10)}
           </td>

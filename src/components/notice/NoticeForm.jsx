@@ -11,15 +11,15 @@ const INIT_FIELD_VALUES = {
   content: '',
 };
 
-function HotdealForm({ hotdeal_no }) {
+function NoticeForm({ notice_no }) {
   const [auth] = useAuth();
   const navigate = useNavigate();
-  const [{ data: hotdealData, loading, error }, Save] = useApiAxios(
+  const [{ data: noticeData, loading, error }, Save] = useApiAxios(
     {
-      url: `/hotdeal/api/hotdeal/${hotdeal_no}/`,
+      url: `/notice/api/notice/${notice_no}/`,
       method: 'GET',
     },
-    { manual: !hotdeal_no },
+    { manual: !notice_no },
   );
 
   const [
@@ -31,16 +31,16 @@ function HotdealForm({ hotdeal_no }) {
     saveRequest,
   ] = useApiAxios(
     {
-      url: !hotdeal_no
-        ? `/hotdeal/api/hotdeal/`
-        : `/hotdeal/api/hotdeal/${hotdeal_no}/`,
-      method: !hotdeal_no ? 'POST' : 'PUT',
+      url: !notice_no
+        ? `/notice/api/notice/`
+        : `/notice/api/notice/${notice_no}/`,
+      method: !notice_no ? 'POST' : 'PUT',
     },
     { manual: true },
   );
 
   const { fieldValues, handleFieldChange, setFieldValues } = useFieldValues(
-    hotdealData || INIT_FIELD_VALUES,
+    noticeData || INIT_FIELD_VALUES,
   );
 
   useEffect(() => {
@@ -53,7 +53,7 @@ function HotdealForm({ hotdeal_no }) {
         draft.img5 = '';
       }),
     );
-  }, [hotdealData]);
+  }, [noticeData]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -72,8 +72,8 @@ function HotdealForm({ hotdeal_no }) {
     saveRequest({
       data: formData,
     }).then((response) => {
-      const savedHotdeal = response.data;
-      navigate(`/hotdeal/${savedHotdeal.hotdeal_no}/`);
+      const savedNotice = response.data;
+      navigate(`/notice/${savedNotice.notice_no}/`);
     });
   };
 
@@ -135,8 +135,6 @@ function HotdealForm({ hotdeal_no }) {
             </p>
           ))}
         </div>
-        <div className="my-3"></div>
-
         <div className="">
           <input
             type="file"
@@ -152,7 +150,6 @@ function HotdealForm({ hotdeal_no }) {
             </p>
           ))}
         </div>
-        <div className="my-3"></div>
 
         <div className="">
           <input
@@ -169,7 +166,6 @@ function HotdealForm({ hotdeal_no }) {
             </p>
           ))}
         </div>
-        <div className="my-3"></div>
 
         <div className="">
           <input
@@ -186,7 +182,6 @@ function HotdealForm({ hotdeal_no }) {
             </p>
           ))}
         </div>
-        <div className="my-3"></div>
 
         <div className="">
           <input
@@ -210,7 +205,7 @@ function HotdealForm({ hotdeal_no }) {
           </button>
           <button
             className="w-24 h-8 ml-2 bg-white rounded-sm text-gray-500 border border-gray-300 "
-            onClick={() => navigate('/hotdeal/')}
+            onClick={() => navigate('/notice/')}
           >
             취소
           </button>
@@ -219,4 +214,4 @@ function HotdealForm({ hotdeal_no }) {
     </div>
   );
 }
-export default HotdealForm;
+export default NoticeForm;

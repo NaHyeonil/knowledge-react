@@ -1,7 +1,7 @@
 import { useAuth } from 'base/context/AuthContext';
 import KnowledgeList from 'components/knowledge/KnowledgeList';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function PageKnowledgeList() {
   const navigate = useNavigate();
@@ -15,14 +15,16 @@ function PageKnowledgeList() {
       </div>
 
       <KnowledgeList />
-      <div className="flex justify-end">
-        <button
-          className="w-24 h-8 bg-gray-400 rounded-sm text-white transition duration-300 ease-in-out hover:bg-white hover:border hover:border-gray-400 hover:text-gray-600 "
-          onClick={() => navigate('/knowledge/new/')}
-        >
-          글쓰기
-        </button>
-      </div>
+      {auth.isLoggedIn && (
+        <div className="flex justify-end">
+          <button
+            className="w-24 h-8 bg-gray-400 rounded-sm text-white transition duration-300 ease-in-out hover:bg-white hover:border hover:border-gray-400 hover:text-gray-600 "
+            onClick={() => navigate('/knowledge/new/')}
+          >
+            글쓰기
+          </button>
+        </div>
+      )}
     </div>
   );
 }

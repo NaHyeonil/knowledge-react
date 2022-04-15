@@ -102,11 +102,8 @@ function KnowledgeForm({ knowledge_no }) {
           ))}
         </div>
         <div className="">
-          <label className="">카테고리</label>
-        </div>
-        <div className="">
           <select
-            className="my-4 ml-4 mr-4 p-1 w-11/12  border border-gray-200 focus-visible:border-gray-500"
+            className="my-4 p-1 border border-gray-200 focus-visible:border-gray-500"
             name="category"
             value={fieldValues.category}
             onChange={handleFieldChange}
@@ -161,10 +158,6 @@ function KnowledgeForm({ knowledge_no }) {
             </p>
           ))}
         </div>
-        <div className="my-3">
-          <label className="">첨부파일</label>
-        </div>
-
         <div className="">
           <input
             type="file"
@@ -179,9 +172,6 @@ function KnowledgeForm({ knowledge_no }) {
               {message}
             </p>
           ))}
-        </div>
-        <div className="my-3">
-          <label className="">첨부파일</label>
         </div>
 
         <div className="">
@@ -199,9 +189,6 @@ function KnowledgeForm({ knowledge_no }) {
             </p>
           ))}
         </div>
-        <div className="my-3">
-          <label className="">첨부파일</label>
-        </div>
 
         <div className="">
           <input
@@ -217,9 +204,6 @@ function KnowledgeForm({ knowledge_no }) {
               {message}
             </p>
           ))}
-        </div>
-        <div className="my-3">
-          <label className="">첨부파일</label>
         </div>
 
         <div className="">
